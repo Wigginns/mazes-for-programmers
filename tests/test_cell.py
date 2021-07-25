@@ -1,8 +1,6 @@
 import pytest
-import sys
-sys.path.append('../package')
 
-from package.cell import Cell
+import cell
 
 def test_Cell_instantiation():
     assert Cell(1,2)
