@@ -1,6 +1,6 @@
 import pytest
 
-from mazes import *
+from mazes import Cell
 
 def test_cell():
     c = Cell(1,2)
