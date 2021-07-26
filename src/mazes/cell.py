@@ -22,7 +22,7 @@ class Cell():
             cell.unlink(self, bidirectional=False)
 
 
-    def links(self) -> KeysView:
+    def links(self):
         """Returns KeysView of cells that are linked to cell"""
 
         return self._links.keys()
