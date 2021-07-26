@@ -11,6 +11,9 @@ class Cell():
         self._west = None
         # self._neighbors = {"north": None, "east": None, "south": None, "west": None,}
 
+    def __repr__(self) -> str:
+        return f'Cell(row={self._row}, column={self._column})'
+
     def link(self, cell, bidirectional=True):
         self._links[cell] = True
         if bidirectional:
