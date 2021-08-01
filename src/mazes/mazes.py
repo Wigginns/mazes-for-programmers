@@ -1,11 +1,14 @@
 from cell import Cell
+from grid import Grid
 
-c = Cell(1,2)
+g = Grid(4,4)
 
-print(vars(c))
+c = g[2,2]
+g[2,2] = Cell(2,2)
 
-c2 = Cell(1,3)
+print(repr(c.north))
 
-c.link(c2)
+# c = g._getCell(4,4)
 
-print(c.links())
+# print(repr(c._north))
+
