@@ -4,6 +4,7 @@ from grid import Grid
 g = Grid(4,4)
 
 c = g[2,2]
+g[2,2] = Cell(2,2)
 
 print(repr(c.north))
 

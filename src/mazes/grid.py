@@ -1,5 +1,5 @@
 from typing import List, Generator, Tuple, Optional
-from cell import Cell
+from cell import Cell, is_cell
 
 Key = Tuple[int, int]
 CellList = List[Cell]
@@ -26,11 +26,6 @@ class Grid():
         self._grid = list()
         self.prepare_grid()
         self.configure_cells()
-
-    def _getCell(self, row, column):
-        if row in range(self.rows) and column in range(self.columns):
-            return self._grid[row][column]
-        return None
 
     def prepare_grid(self):
         """Setup 2d array in _grid of Cells with Cell(r,c)"""
@@ -61,12 +56,25 @@ class Grid():
             return self._grid[row][column]
         return None
 
+    def set_cell_at(self, row: int, column: int, cell: Cell) -> None:
+        self._grid[row][column] = cell
+
     def __getitem__(self, key: Key) -> Optional[Cell]:
         """Override [] accessor to return the Cell in _grid as long as it's within bounds"""
 
         if not is_key(key):
-            raise IndexError('Only valid indexes ex. grid[row,col] are supported')
+            raise IndexError('Only valid indexes ex. Grid[row,col] are supported')
         return self.cell_at(*key)
+
+    def __setitem__(self, key: Key, new_cell: Cell) -> None:
+        """Override [] setter to allow a key to set an item"""
+
+        if not is_key(key):
+            raise IndexError('Only valid indexes ex. Grid[row,col] are supported')
+        if not is_cell(new_cell):
+            raise ValueError('Only a Cell can be placed into the grid')
+        self.set_cell_at(*key, new_cell)
+
 
 def is_key(key: Key) -> bool:
     """
