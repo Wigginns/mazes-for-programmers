@@ -1,40 +1,75 @@
-from typing import List
+from typing import List, Generator, Tuple, Optional
 from cell import Cell
 
+Key = Tuple[int, int]
+CellList = List[Cell]
 class Grid():
-    _grid: List
 
-    def __init__(self, rows, columns):
-        self._rows = rows
-        self._columns = columns
+    @property
+    def rows(self) -> int:
+        return self._rows
+
+    @property
+    def columns(self) -> int:
+        return self._columns
+
+
+
+    def __init__(self, rows, columns) -> None:
+        if rows is None or rows < 2:
+            raise ValueError("rows must be an int greater than 1")
+        if columns is None or columns < 2:
+            raise ValueError("columns must be an int greater than 1")
+
+        self._rows: int = rows
+        self._columns: int = columns
         self._grid = list()
         self.prepare_grid()
         self.configure_cells()
 
-    # def __getitem__(self, row, column):
-    #     """Override [] accessor to return the Cell in _grid as long as it's within bounds"""
-
-    #     if row in range(self._rows) and column in range(self._columns):
-    #         return self._grid[row][column]
-
     def _getCell(self, row, column):
-        if row in range(self._rows) and column in range(self._columns):
+        if row in range(self.rows) and column in range(self.columns):
             return self._grid[row][column]
+        return None
 
     def prepare_grid(self):
         """Setup 2d array in _grid of Cells with Cell(r,c)"""
 
         self._grid = [[Cell(r,c) for c in range(self._columns)] for r in range(self._rows)]
-        print(repr(self._grid))
 
     def configure_cells(self):
         for row in range(self._rows):
             for column in range(self._columns):
-                # cell = list(self._grid)[row][column]
-                cell = self._getCell(row, column)
-                # cell = self[row, column]
+                cell = self[row, column]
 
-                cell._north = self._getCell(row - 1, column)
-                cell._south = self._getCell(row + 1, column)
-                cell._east =  self._getCell(row, column + 1)
-                cell._west =  self._getCell(row, column - 1)
+                cell.north = self[row - 1, column]
+                cell.south = self[row + 1, column]
+                cell.east = self[row, column - 1]
+                cell.west = self[row, column + 1]
+
+    def each_row(self) -> Generator[CellList, None, None]:
+        for row in range(self.rows):
+            yield self._grid[row]
+
+    def each_cell(self) -> Generator:
+        for row in self.each_row():
+            for cell in row:
+                yield cell
+
+    def cell_at(self, row, column) -> Optional[Cell]:
+        if row in range(self._rows) and column in range(self._columns):
+            return self._grid[row][column]
+        return None
+
+    def __getitem__(self, key: Key) -> Optional[Cell]:
+        """Override [] accessor to return the Cell in _grid as long as it's within bounds"""
+
+        if not is_key(key):
+            raise IndexError('Only valid indexes ex. grid[row,col] are supported')
+        return self.cell_at(*key)
+
+def is_key(key: Key) -> bool:
+    """
+    Runtime check for key correctness
+    """
+    return type(key) == tuple and len(key) == 2 and not any(type(value) != int for value in key)
