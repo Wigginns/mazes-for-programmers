@@ -1,6 +1,7 @@
 import pytest
 
-from mazes import Grid
+from mazes.base.grid import Grid
+from mazes.base.cell import is_cell
 
 def test_grid():
     with pytest.raises(ValueError):
@@ -10,8 +11,13 @@ def test_grid():
 
     assert g._rows == 6
     assert g._columns == 7
-    c = g._getCell(4,4)
 
     c = g[4,4]
 
-    print(repr(c.north))
+    assert is_cell(c)
+
+    cc = g.random_cell()
+
+    assert is_cell(cc)
+
+    # print(repr(c.north))
