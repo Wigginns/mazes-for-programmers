@@ -16,4 +16,7 @@ def test_cell():
     c.unlink(c2)
     assert c2 not in c.links
 
+    c.north = c2
+    assert c2 in c.neighbors()
+
 

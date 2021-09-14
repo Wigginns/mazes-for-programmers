@@ -1,5 +1,5 @@
 from typing import List, Generator, Tuple, Optional
-from cell import Cell, is_cell
+from .cell import Cell, is_cell
 
 Key = Tuple[int, int]
 CellList = List[Cell]

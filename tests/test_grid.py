@@ -10,7 +10,7 @@ def test_grid():
 
     assert g._rows == 6
     assert g._columns == 7
-    c = g._getCell(4,4)
+    c = g.cell_at(4,4)
 
     c = g[4,4]
 

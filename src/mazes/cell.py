@@ -51,14 +51,14 @@ class Cell():
 
         neighbors = []
          #can I use _ instead of self.north() again?
-        if self.north():
-            neighbors.append(self.north())
-        if self.east():
-            neighbors.append(self.east())
-        if self.south():
-            neighbors.append(self.south())
-        if self.west():
-            neighbors.append(self.west())
+        if self.north:
+            neighbors.append(self.north)
+        if self.east:
+            neighbors.append(self.east)
+        if self.south:
+            neighbors.append(self.south)
+        if self.west:
+            neighbors.append(self.west)
         return neighbors
 
 def is_cell(cell: Any) -> bool:
