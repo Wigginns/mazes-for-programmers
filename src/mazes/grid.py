@@ -13,8 +13,6 @@ class Grid():
     def columns(self) -> int:
         return self._columns
 
-
-
     def __init__(self, rows, columns) -> None:
         if rows is None or rows < 2:
             raise ValueError("rows must be an int greater than 1")

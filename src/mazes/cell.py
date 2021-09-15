@@ -22,6 +22,7 @@ class Cell():
         self._row = row
         self._column = column
         self._links: Dict[Cell, bool] = {}
+        # TODO: Consider changing neighbor members into a dict?
         self.north: Optional[Cell] = None
         self.east: Optional[Cell] = None
         self.south: Optional[Cell] = None
@@ -34,23 +35,25 @@ class Cell():
         self._links[cell] = True
         if bidirectional:
             cell.link(self, bidirectional=False)
+        return self
 
     def unlink(self, cell, bidirectional=True):
         del self._links[cell]
         if bidirectional:
             cell.unlink(self, bidirectional=False)
+        return self
 
 
     def linked(self, cell) -> bool:
         """Returns if cell is in _links of cell"""
 
-        return cell in self.links()
+        return cell in self._links
 
     def neighbors(self) -> list:
         """Returns list of all neighbors (north, east, south, west)"""
 
         neighbors = []
-         #can I use _ instead of self.north() again?
+        # TODO: Consider changing neighbor members into a dict?
         if self.north:
             neighbors.append(self.north)
         if self.east:

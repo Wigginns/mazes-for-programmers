@@ -1,6 +1,7 @@
 import pytest
 
 from mazes import Grid
+from mazes.grid import is_key
 
 def test_grid():
     with pytest.raises(ValueError):
@@ -10,8 +11,10 @@ def test_grid():
 
     assert g._rows == 6
     assert g._columns == 7
+
     c = g.cell_at(4,4)
+    c2 = g[4,4]
+    assert c == c2
 
-    c = g[4,4]
-
-    print(repr(c.north))
+    assert is_key((1,2))
+    assert not is_key((1,2,3)) 
