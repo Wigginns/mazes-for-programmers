@@ -1,5 +1,4 @@
-import random
-from typing import cast, List, Generator, Tuple, Optional
+from typing import List, Generator, Tuple, Optional
 from .cell import Cell, is_cell
 
 Key = Tuple[int, int]
@@ -13,8 +12,6 @@ class Grid():
     @property
     def columns(self) -> int:
         return self._columns
-
-
 
     def __init__(self, rows, columns) -> None:
         if rows is None or rows < 2:

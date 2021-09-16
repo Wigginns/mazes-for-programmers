@@ -1,3 +1,5 @@
+from __future__ import annotations
+# Not necessary in Python 3.10>
 from typing import List, Dict, Optional, Any
 
 Links = Dict["Cell", bool]
@@ -37,6 +39,7 @@ class Cell():
         self._row: int = row
         self._column: int = column
         self._links: Dict[Cell, bool] = {}
+        # TODO: Consider changing neighbor members into a dict?
         self.north: Optional[Cell] = None
         self.east: Optional[Cell] = None
         self.south: Optional[Cell] = None
@@ -45,20 +48,37 @@ class Cell():
     def __repr__(self) -> str:
         return f'Cell(row={self._row}, column={self._column})'
 
-    def link(self, cell, bidirectional=True) -> None:
+    def link(self, cell, bidirectional=True) -> Cell:
         self._links[cell] = True
         if bidirectional:
             cell.link(self, bidirectional=False)
+        return self
 
-    def unlink(self, cell, bidirectional=True) -> None:
+    def unlink(self, cell, bidirectional=True) -> Cell:
         del self._links[cell]
         if bidirectional:
             cell.unlink(self, bidirectional=False)
+        return self
 
     def linked(self, cell) -> bool:
         """Returns if cell is in _links of cell"""
 
-        return cell in self.links()
+        return cell in self._links
+
+    def neighbors(self) -> list:
+        """Returns list of all neighbors (north, east, south, west)"""
+
+        neighbors = []
+        # TODO: Consider changing neighbor members into a dict?
+        if self.north:
+            neighbors.append(self.north)
+        if self.east:
+            neighbors.append(self.east)
+        if self.south:
+            neighbors.append(self.south)
+        if self.west:
+            neighbors.append(self.west)
+        return neighbors
 
 def is_cell(cell: Any) -> bool:
     return isinstance(cell, Cell)
