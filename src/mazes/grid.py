@@ -21,14 +21,13 @@ class Grid():
 
         self._rows: int = rows
         self._columns: int = columns
-        self._grid = list()
-        self.prepare_grid()
+        self._grid: List[CellList] = self.prepare_grid()
         self.configure_cells()
 
-    def prepare_grid(self):
+    def prepare_grid(self) -> List[CellList]:
         """Setup 2d array in _grid of Cells with Cell(r,c)"""
 
-        self._grid = [[Cell(r,c) for c in range(self._columns)] for r in range(self._rows)]
+        return [[Cell(r,c) for c in range(self._columns)] for r in range(self._rows)]
 
     def configure_cells(self):
         for row in range(self._rows):
@@ -72,6 +71,11 @@ class Grid():
         if not is_cell(new_cell):
             raise ValueError('Only a Cell can be placed into the grid')
         self.set_cell_at(*key, new_cell)
+
+    def random_cell(self) -> Cell:
+        row = random.randrange(self.rows)
+        column = random.randrange(self.columns)
+        return cast(Cell, self[row, column])
 
 
 def is_key(key: Key) -> bool:

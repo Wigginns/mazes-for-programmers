@@ -20,9 +20,24 @@ class Cell():
     def links(self) -> CellList:
         return list(self._links.keys())
 
-    def __init__(self, row, column):
-        self._row = row
-        self._column = column
+    @property
+    def neighbors(self) -> CellList:
+        """Returns list of all neighbors (north, east, south, west)"""
+
+        neighbors: CellList = []
+        if self.north():
+            neighbors.append(self.north)
+        if self.east():
+            neighbors.append(self.east)
+        if self.south():
+            neighbors.append(self.south)
+        if self.west():
+            neighbors.append(self.west)
+        return neighbors
+
+    def __init__(self, row: int, column: int) -> None:
+        self._row: int = row
+        self._column: int = column
         self._links: Dict[Cell, bool] = {}
         # TODO: Consider changing neighbor members into a dict?
         self.north: Optional[Cell] = None
@@ -44,7 +59,6 @@ class Cell():
         if bidirectional:
             cell.unlink(self, bidirectional=False)
         return self
-
 
     def linked(self, cell) -> bool:
         """Returns if cell is in _links of cell"""
