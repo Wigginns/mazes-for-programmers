@@ -1,3 +1,5 @@
+from __future__ import annotations
+# Not necessary in Python 3.10>
 from typing import List, Dict, Optional, Any
 
 Links = Dict["Cell", bool]
@@ -31,13 +33,13 @@ class Cell():
     def __repr__(self) -> str:
         return f'Cell(row={self._row}, column={self._column})'
 
-    def link(self, cell, bidirectional=True):
+    def link(self, cell, bidirectional=True) -> Cell:
         self._links[cell] = True
         if bidirectional:
             cell.link(self, bidirectional=False)
         return self
 
-    def unlink(self, cell, bidirectional=True):
+    def unlink(self, cell, bidirectional=True) -> Cell:
         del self._links[cell]
         if bidirectional:
             cell.unlink(self, bidirectional=False)
