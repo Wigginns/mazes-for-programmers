@@ -1,4 +1,5 @@
-from typing import List, Generator, Tuple, Optional
+from typing import List, Generator, Tuple, Optional, cast
+import random
 from .cell import Cell, is_cell
 
 Key = Tuple[int, int]
@@ -49,7 +50,7 @@ class Grid():
                 yield cell
 
     def cell_at(self, row, column) -> Optional[Cell]:
-        if row in range(self._rows) and column in range(self._columns):
+        if self.index_is_in_range((row,column)):
             return self._grid[row][column]
         return None
 
@@ -65,8 +66,9 @@ class Grid():
 
     def __setitem__(self, key: Key, new_cell: Cell) -> None:
         """Override [] setter to allow a key to set an item"""
+        print(new_cell)
 
-        if not is_key(key):
+        if not is_key(key) or not self.index_is_in_range(key):
             raise IndexError('Only valid indexes ex. Grid[row,col] are supported')
         if not is_cell(new_cell):
             raise ValueError('Only a Cell can be placed into the grid')
@@ -77,9 +79,15 @@ class Grid():
         column = random.randrange(self.columns)
         return cast(Cell, self[row, column])
 
+    def index_is_in_range(self, key: Key) -> bool:
+        """
+        Check that a key[row, column] uses indexes in range
+        """
+        return key[0] in range(self.rows) and key[1] in range(self.columns)
+
 
 def is_key(key: Key) -> bool:
     """
-    Runtime check for key correctness
+    Used to check that keys are valid format and in range
     """
-    return type(key) == tuple and len(key) == 2 and not any(type(value) != int for value in key)
+    return type(key) == tuple and len(key) == 2 and all(type(value) == int for value in key)

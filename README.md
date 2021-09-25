@@ -3,4 +3,4 @@ Python implementation of Mazes for Programmers
 
 For development install the package locally:
     pip install -e .
-    pip install ./ --upgrade --use-feature=in-tree-build
+    pip install -e ./ --upgrade --use-feature=in-tree-build
