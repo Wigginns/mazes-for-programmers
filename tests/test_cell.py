@@ -25,7 +25,7 @@ def test_cell():
     assert c2 in c.neighbors()
     assert c3 not in c.neighbors()
 
-    assert repr(c.north) == "Cell(row=1, column=3)"
+    assert repr(c.north) == "Cell(1,3)"
 
     assert is_cell(c)
     assert not is_cell("I'm a sentence.")

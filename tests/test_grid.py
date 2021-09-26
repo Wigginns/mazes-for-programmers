@@ -1,10 +1,9 @@
 import pytest
-from typing import List
 
 from mazes import Cell
 from mazes.cell import is_cell
 from mazes import Grid
-from mazes.grid import is_key, CellList
+from mazes.grid import is_key
 
 ROWS, COLUMNS = 6,7
 
@@ -82,7 +81,7 @@ def test_grid_generators():
     assert generator_rows == ROWS
 
     # TODO: Test to ensure we get all items we expect
-    # Might need to override __eq__ to do it easily
+    # Might need to override __eq__ to do it easily?
     # all_cells = [
     #     Cell(0, 0), Cell(0, 1), Cell(0, 2), Cell(0, 3), Cell(0, 4), Cell(0, 5), Cell(0, 6),
     #     Cell(1, 0), Cell(1, 1), Cell(1, 2), Cell(1, 3), Cell(1, 4), Cell(1, 5), Cell(1, 6),
