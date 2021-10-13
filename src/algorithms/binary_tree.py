@@ -4,7 +4,7 @@ from .algorithm import Algorithm
 from mazes import Grid
 from mazes import Cell
 
-class BinaryTree():
+class BinaryTree(Algorithm):
     """
     Uses a simple random selection algorithm to convert a given Grid into a binary tree.
     For each Cell in the Grid we choose north or east and link to it.
