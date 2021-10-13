@@ -14,12 +14,10 @@ class BinaryTree():
 
     def apply(self, grid: Grid) -> None:
         for cell in grid.each_cell():
-            print(cell)
             neighbors = []
             if cell.north:
                 neighbors.append(cell.north)
             if cell.east:
                 neighbors.append(cell.east)
             if len(neighbors) > 0:
-                print(choice(neighbors))
                 cell.link(choice(neighbors))
