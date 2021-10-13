@@ -17,6 +17,7 @@ def test_grid():
     assert g.columns == COLUMNS
 
     # TODO: Test configure_cells and prepare grid
+    # test_grid_cell_neighbors() does some configure_cells testing
 
 def test_grid_get_cell_at():
     g = Grid(ROWS, COLUMNS)
@@ -64,6 +65,16 @@ def test_grid_random_cell():
     for _ in range(33):
         random_cell = g.random_cell()
         assert random_cell.row < ROWS and random_cell.column < COLUMNS
+
+def test_grid_cell_neighbors():
+    g = Grid(ROWS, COLUMNS)
+    c = g.cell_at(2, 2)
+
+    assert c.north.row == 1 and c.north.column == 2
+    assert c.south.row == 3 and c.south.column == 2
+
+    assert c.east.row == 2 and c.east.column == 3
+    assert c.west.row == 2 and c.west.column == 1
 
 
 def test_grid_generators():

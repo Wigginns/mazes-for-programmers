@@ -37,8 +37,8 @@ class Grid():
 
                 cell.north = self[row - 1, column]
                 cell.south = self[row + 1, column]
-                cell.east = self[row, column - 1]
-                cell.west = self[row, column + 1]
+                cell.east = self[row, column + 1]
+                cell.west = self[row, column - 1]
 
     def each_row(self) -> Generator[CellList, None, None]:
         for row in range(self.rows):
@@ -66,7 +66,6 @@ class Grid():
 
     def __setitem__(self, key: Key, new_cell: Cell) -> None:
         """Override [] setter to allow a key to set an item"""
-        print(new_cell)
 
         if not is_key(key) or not self.index_is_in_range(key):
             raise IndexError('Only valid indexes ex. Grid[row,col] are supported')
@@ -84,6 +83,27 @@ class Grid():
         Check that a key[row, column] uses indexes in range
         """
         return key[0] in range(self.rows) and key[1] in range(self.columns)
+
+    # Should this be __repr__?
+    def __repr__(self) -> str:
+        output = "+" + "---+" * self.columns + "\n"
+
+        for row in self.each_row():
+            top = "|"
+            bottom = "+"
+            for cell in row:
+                body = "   " # three spaces
+                east_boundary = " " if cell.linked(cell.east) else "|"
+                top += body + east_boundary
+
+                south_boundary = "   " if cell.linked(cell.south) else "---"
+                corner = "+"
+                bottom += south_boundary + corner
+
+            output += top + "\n"
+            output += bottom + "\n"
+
+        return output
 
 
 def is_key(key: Key) -> bool:
