@@ -37,8 +37,8 @@ class Grid():
 
                 cell.north = self[row - 1, column]
                 cell.south = self[row + 1, column]
-                cell.east = self[row, column - 1]
-                cell.west = self[row, column + 1]
+                cell.east = self[row, column + 1]
+                cell.west = self[row, column - 1]
 
     def each_row(self) -> Generator[CellList, None, None]:
         for row in range(self.rows):
