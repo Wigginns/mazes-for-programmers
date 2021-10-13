@@ -20,4 +20,4 @@ class BinaryTree(Algorithm):
             if cell.east:
                 neighbors.append(cell.east)
             if neighbors:
-                cell.link(choice(neighbors)) if len(neighbors) > 0 else cell.link(neighbors[0])
+                cell.link(choice(neighbors))
