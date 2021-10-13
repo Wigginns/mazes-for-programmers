@@ -17,6 +17,7 @@ def test_grid():
     assert g.columns == COLUMNS
 
     # TODO: Test configure_cells and prepare grid
+    # test_grid_cell_neighbors() does some configure_cells testing
 
 def test_grid_get_cell_at():
     g = Grid(ROWS, COLUMNS)

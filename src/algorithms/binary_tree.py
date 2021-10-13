@@ -7,7 +7,7 @@ from mazes import Cell
 class BinaryTree():
     """
     Uses a simple random selection algorithm to convert a given Grid into a binary tree.
-    For each Cell in the Grid we choose north or east and link it to it.
+    For each Cell in the Grid we choose north or east and link to it.
     The top row always chooses east, the east column always chooses north.
     Northeast cell will have no eligible neighbors
     """
@@ -19,5 +19,5 @@ class BinaryTree():
                 neighbors.append(cell.north)
             if cell.east:
                 neighbors.append(cell.east)
-            if len(neighbors) > 0:
-                cell.link(choice(neighbors))
+            if neighbors:
+                cell.link(choice(neighbors)) if len(neighbors) > 0 else cell.link(neighbors[0])
