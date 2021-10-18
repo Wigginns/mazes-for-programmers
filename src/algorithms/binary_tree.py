@@ -2,7 +2,6 @@ from random import choice
 
 from .algorithm import Algorithm
 from mazes import Grid
-from mazes import Cell
 
 class BinaryTree(Algorithm):
     """
