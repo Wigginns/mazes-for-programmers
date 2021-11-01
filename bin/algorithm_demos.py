@@ -1,13 +1,24 @@
-from algorithms import BinaryTree
-from mazes import Grid
+from src.algorithms import BinaryTree, Sidewinder
+from src.mazes import Grid
 
-grid = Grid(15,15)
-b_t = BinaryTree()
-print(grid)
-b_t.apply(grid)
 
-# c = grid[1,1]
-# print(c._links)
-# print(grid[0,0].linked)
+def main():
+    bt_grid = Grid(15,15)
+    bt = BinaryTree()
+    print(bt_grid)
+    bt.apply(bt_grid)
 
-print(grid)
+    print(bt_grid)
+
+
+
+    sw_grid = Grid(15,15)
+    sw = Sidewinder()
+    print(sw_grid)
+    sw.apply(sw_grid)
+
+    print(sw_grid)
+
+
+if __name__ == "__main__":
+    main()
