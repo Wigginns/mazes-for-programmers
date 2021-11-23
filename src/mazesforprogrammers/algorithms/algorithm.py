@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
-from mazes import Grid
+from mazesforprogrammers import Grid
 
 class Algorithm(metaclass=ABCMeta):
 

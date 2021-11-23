@@ -1,5 +1,5 @@
-from src.algorithms import BinaryTree, Sidewinder
-from src.mazes import Grid
+from mazesforprogrammers import BinaryTree, Sidewinder
+from mazesforprogrammers import Grid
 
 
 def main():

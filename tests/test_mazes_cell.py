@@ -1,7 +1,7 @@
 import pytest
 
-from mazes import Cell
-from mazes.cell import is_cell
+from mazesforprogrammers import Cell
+from mazesforprogrammers.base.cell import is_cell
 
 def test_cell():
     c = Cell(1,2)

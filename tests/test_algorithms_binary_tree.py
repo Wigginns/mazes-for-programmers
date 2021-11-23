@@ -1,7 +1,6 @@
 import pytest
 
-from algorithms import BinaryTree
-from algorithms.algorithm import Algorithm
+from mazesforprogrammers import BinaryTree, Algorithm
 
 #TODO: Come up with better tests than this
 def test_binary_tree():

@@ -1,7 +1,6 @@
 import pytest
 
-from algorithms import Sidewinder
-from algorithms.algorithm import Algorithm
+from mazesforprogrammers import Sidewinder, Algorithm
 
 #TODO: Come up with better tests than this
 def test_binary_tree():

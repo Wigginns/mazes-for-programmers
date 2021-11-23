@@ -1,9 +1,8 @@
 import pytest
 
-from mazes import Cell
-from mazes.cell import is_cell
-from mazes import Grid
-from mazes.grid import is_key
+from mazesforprogrammers import Cell, Grid
+from mazesforprogrammers.base.cell import is_cell
+from mazesforprogrammers.base.grid import is_key
 
 ROWS, COLUMNS = 6,7
 

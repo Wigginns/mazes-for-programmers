@@ -1,7 +1,7 @@
 from random import randint, choice
 
 from .algorithm import Algorithm
-from mazes import Grid
+from mazesforprogrammers import Grid
 
 class Sidewinder(Algorithm):
     """

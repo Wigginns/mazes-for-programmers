@@ -1,4 +1,4 @@
-from src.mazes import Cell, Grid
+from mazesforprogrammers import Cell, Grid
 
 
 def main():
