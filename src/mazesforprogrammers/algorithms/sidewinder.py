@@ -3,6 +3,7 @@ from random import randint, choice
 from .algorithm import Algorithm
 from mazesforprogrammers import Grid
 
+
 class Sidewinder(Algorithm):
     """
     Convert grid into a maze using Sidewinder algorithm
@@ -19,11 +20,11 @@ class Sidewinder(Algorithm):
             for cell in row:
                 run.append(cell)
 
-                at_eastern_boundary = True if cell.east == None else False
-                at_northern_boundary = True if cell.north == None else False
+                at_eastern_boundary = True if cell.east is None else False
+                at_northern_boundary = True if cell.north is None else False
 
                 close_run = at_eastern_boundary\
-                    or (not at_northern_boundary and randint(1,2) == 2)
+                    or (not at_northern_boundary and randint(1, 2) == 2)
 
                 if close_run:
                     run_cell = choice(run)

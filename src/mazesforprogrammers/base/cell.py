@@ -5,6 +5,7 @@ from typing import List, Dict, Optional, Any
 Links = Dict["Cell", bool]
 CellList = List["Cell"]
 
+
 class Cell():
     """Represent a cell"""
 
@@ -25,13 +26,13 @@ class Cell():
         """Returns list of all neighbors (north, east, south, west)"""
 
         neighbors: CellList = []
-        if self.north():
+        if self.north:
             neighbors.append(self.north)
-        if self.east():
+        if self.east:
             neighbors.append(self.east)
-        if self.south():
+        if self.south:
             neighbors.append(self.south)
-        if self.west():
+        if self.west:
             neighbors.append(self.west)
         return neighbors
 
@@ -65,20 +66,6 @@ class Cell():
 
         return cell in self._links
 
-    def neighbors(self) -> list:
-        """Returns list of all neighbors (north, east, south, west)"""
-
-        neighbors = []
-        # TODO: Consider changing neighbor members into a dict?
-        if self.north:
-            neighbors.append(self.north)
-        if self.east:
-            neighbors.append(self.east)
-        if self.south:
-            neighbors.append(self.south)
-        if self.west:
-            neighbors.append(self.west)
-        return neighbors
 
 def is_cell(cell: Any) -> bool:
     return isinstance(cell, Cell)

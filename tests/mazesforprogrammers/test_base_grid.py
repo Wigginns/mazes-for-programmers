@@ -4,11 +4,12 @@ from mazesforprogrammers import Cell, Grid
 from mazesforprogrammers.base.cell import is_cell
 from mazesforprogrammers.base.grid import is_key
 
-ROWS, COLUMNS = 6,7
+ROWS, COLUMNS = 6, 7
+
 
 def test_grid():
     with pytest.raises(ValueError):
-        g = Grid(1,1)
+        g = Grid(1, 1)
 
     g = Grid(ROWS, COLUMNS)
 
@@ -18,6 +19,7 @@ def test_grid():
     # TODO: Test configure_cells and prepare grid
     # test_grid_cell_neighbors() does some configure_cells testing
 
+
 def test_grid_get_cell_at():
     g = Grid(ROWS, COLUMNS)
 
@@ -25,34 +27,38 @@ def test_grid_get_cell_at():
     c2 = g[ROWS-2, COLUMNS-2]
     assert c == c2
 
-    assert g[ROWS+1,COLUMNS+1] is None
+    assert g[ROWS+1, COLUMNS+1] is None
     with pytest.raises(IndexError):
-        g[1,2,3]
+        g[1, 2, 3]
+
 
 def test_grid_is_key():
-    assert is_key((1,2))
-    assert not is_key((1,2,3))
-    assert not is_key((8.9,1.1))
+    assert is_key((1, 2))
+    assert not is_key((1, 2, 3))
+    assert not is_key((8.9, 1.1))
+
 
 def test_grid_set_cell_at():
     g = Grid(ROWS, COLUMNS)
 
     # TODO: set_cell_at test, happy path
-    out_of_range_cell = Cell(15,15)
+    out_of_range_cell = Cell(15, 15)
     with pytest.raises(IndexError):
-        g[ROWS,COLUMNS] = out_of_range_cell
+        g[ROWS, COLUMNS] = out_of_range_cell
     with pytest.raises(ValueError):
-        g[1,1] = 12
+        g[1, 1] = 12
+
 
 def test_grid_index_is_in_range():
     g = Grid(ROWS, COLUMNS)
 
     for r in range(ROWS):
         for c in range(COLUMNS):
-            assert g.index_is_in_range((r,c))
+            assert g.index_is_in_range((r, c))
 
-    assert not g.index_is_in_range((-1,-1))
-    assert not g.index_is_in_range((ROWS,COLUMNS))
+    assert not g.index_is_in_range((-1, -1))
+    assert not g.index_is_in_range((ROWS, COLUMNS))
+
 
 def test_grid_random_cell():
     g = Grid(ROWS, COLUMNS)
@@ -64,6 +70,7 @@ def test_grid_random_cell():
     for _ in range(33):
         random_cell = g.random_cell()
         assert random_cell.row < ROWS and random_cell.column < COLUMNS
+
 
 def test_grid_cell_neighbors():
     g = Grid(ROWS, COLUMNS)

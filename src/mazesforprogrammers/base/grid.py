@@ -4,6 +4,8 @@ from .cell import Cell, is_cell
 
 Key = Tuple[int, int]
 CellList = List[Cell]
+
+
 class Grid():
 
     @property
@@ -28,7 +30,7 @@ class Grid():
     def prepare_grid(self) -> List[CellList]:
         """Setup 2d array in _grid of Cells with Cell(r,c)"""
 
-        return [[Cell(r,c) for c in range(self._columns)] for r in range(self._rows)]
+        return [[Cell(r, c) for c in range(self._columns)] for r in range(self._rows)]
 
     def configure_cells(self):
         for row in range(self._rows):
@@ -50,7 +52,7 @@ class Grid():
                 yield cell
 
     def cell_at(self, row, column) -> Optional[Cell]:
-        if self.index_is_in_range((row,column)):
+        if self.index_is_in_range((row, column)):
             return self._grid[row][column]
         return None
 
@@ -92,7 +94,7 @@ class Grid():
             top = "|"
             bottom = "+"
             for cell in row:
-                body = "   " # three spaces
+                body = "   "  # three spaces
                 east_boundary = " " if cell.linked(cell.east) else "|"
                 top += body + east_boundary
 

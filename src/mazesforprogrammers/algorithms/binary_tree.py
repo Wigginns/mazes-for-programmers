@@ -3,6 +3,7 @@ from random import choice
 from .algorithm import Algorithm
 from mazesforprogrammers import Grid
 
+
 class BinaryTree(Algorithm):
     """
     Uses a simple random selection algorithm to convert a given Grid into a binary tree.
