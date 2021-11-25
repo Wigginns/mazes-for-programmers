@@ -47,7 +47,7 @@ def test_grid_is_key():
 def test_grid_set_cell_at():
     g = Grid(ROWS, COLUMNS)
 
-    c =Cell(2, 2)
+    c = Cell(2, 2)
     g[2, 2] = c
     assert g._grid[2][2] is c
 
@@ -90,6 +90,7 @@ def test_grid_cell_neighbors():
 
     assert c.east.row == 2 and c.east.column == 3
     assert c.west.row == 2 and c.west.column == 1
+
 
 def test_grid_print_grid():
     g = Grid(4, 4)

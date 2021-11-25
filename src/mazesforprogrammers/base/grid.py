@@ -112,6 +112,7 @@ class Grid():
     def __repr__(self) -> str:
         return f'Grid(rows={self._rows}, columns={self._columns})'
 
+
 def is_key(key: Key) -> bool:
     """
     Used to check that keys are valid format and in range

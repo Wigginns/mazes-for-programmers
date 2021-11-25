@@ -15,13 +15,13 @@ def test_cell_init_and_helpers():
     assert is_cell(c)
     assert not is_cell("I'm a sentence.")
 
+
 def test_cell_linking_and_neighbors():
-    middle_cell  = Cell(2, 2)
-    north_cell   = Cell(1, 2)
-    norther_cell = Cell(0, 2)
-    east_cell    = Cell(2, 3)
-    # south_cell  = Cell(3, 2)
-    # west_cell   = Cell(2, 1)
+    middle_cell = Cell(2, 2)
+    north_cell = Cell(1, 2)
+    east_cell = Cell(2, 3)
+    # south_cell = Cell(3, 2)
+    # west_cell = Cell(2, 1)
 
     middle_cell.link(north_cell)
     middle_cell.link(east_cell)
