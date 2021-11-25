@@ -86,8 +86,7 @@ class Grid():
         """
         return key[0] in range(self.rows) and key[1] in range(self.columns)
 
-    # Should this be __repr__?
-    def __repr__(self) -> str:
+    def print_grid(self) -> str:
         output = "+" + "---+" * self.columns + "\n"
 
         for row in self.each_row():
@@ -107,6 +106,11 @@ class Grid():
 
         return output
 
+    def __str__(self) -> str:
+        return f'Grid with {self._rows} rows and {self._columns} columns.'
+
+    def __repr__(self) -> str:
+        return f'Grid(rows={self._rows}, columns={self._columns})'
 
 def is_key(key: Key) -> bool:
     """

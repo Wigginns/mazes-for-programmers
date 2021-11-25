@@ -11,10 +11,16 @@ def test_grid():
     with pytest.raises(ValueError):
         g = Grid(1, 1)
 
+    with pytest.raises(ValueError):
+        g = Grid(2, 1)
+
     g = Grid(ROWS, COLUMNS)
 
     assert g.rows == ROWS
     assert g.columns == COLUMNS
+
+    assert str(g) == f'Grid with {ROWS} rows and {COLUMNS} columns.'
+    assert repr(g) == f'Grid(rows={ROWS}, columns={COLUMNS})'
 
     # TODO: Test configure_cells and prepare grid
     # test_grid_cell_neighbors() does some configure_cells testing
@@ -41,7 +47,10 @@ def test_grid_is_key():
 def test_grid_set_cell_at():
     g = Grid(ROWS, COLUMNS)
 
-    # TODO: set_cell_at test, happy path
+    c =Cell(2, 2)
+    g[2, 2] = c
+    assert g._grid[2][2] is c
+
     out_of_range_cell = Cell(15, 15)
     with pytest.raises(IndexError):
         g[ROWS, COLUMNS] = out_of_range_cell
@@ -81,6 +90,21 @@ def test_grid_cell_neighbors():
 
     assert c.east.row == 2 and c.east.column == 3
     assert c.west.row == 2 and c.west.column == 1
+
+def test_grid_print_grid():
+    g = Grid(4, 4)
+    expected_print_grid = (
+        '+---+---+---+---+\n'
+        '|   |   |   |   |\n'
+        '+---+---+---+---+\n'
+        '|   |   |   |   |\n'
+        '+---+---+---+---+\n'
+        '|   |   |   |   |\n'
+        '+---+---+---+---+\n'
+        '|   |   |   |   |\n'
+        '+---+---+---+---+\n'
+    )
+    assert g.print_grid() == expected_print_grid
 
 
 def test_grid_generators():
