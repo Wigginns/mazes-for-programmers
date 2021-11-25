@@ -46,8 +46,11 @@ class Cell():
         self.south: Optional[Cell] = None
         self.west: Optional[Cell] = None
 
+    def __str__(self) -> str:
+        return f'Cell row is {self._row} and column is {self._column}.'
+
     def __repr__(self) -> str:
-        return f'Cell({self._row},{self._column})'
+        return f'Cell(row={self._row}, column={self._column})'
 
     def link(self, cell, bidirectional=True) -> Cell:
         self._links[cell] = True
